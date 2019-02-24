@@ -34,6 +34,19 @@ theme.border_normal = "#000000"
 theme.border_focus  = "#535d6c"
 theme.border_marked = "#91231c"
 
+theme.layout_txt_tile                           = "[t]"
+theme.layout_txt_tileleft                       = "[l]"
+theme.layout_txt_tilebottom                     = "[b]"
+theme.layout_txt_tiletop                        = "[tt]"
+theme.layout_txt_fairv                          = "[fv]"
+theme.layout_txt_fairh                          = "[fh]"
+theme.layout_txt_spiral                         = "[s]"
+theme.layout_txt_dwindle                        = "[d]"
+theme.layout_txt_max                            = "[m]"
+theme.layout_txt_fullscreen                     = "[F]"
+theme.layout_txt_magnifier                      = "[M]"
+theme.layout_txt_floating                       = "[|]"
+
 -- There are other variable sets
 -- overriding the default one when
 -- defined, the sets are:
@@ -48,7 +61,7 @@ theme.border_marked = "#91231c"
 --theme.taglist_bg_focus = "#ff0000"
 
 -- Generate taglist squares:
-local taglist_square_size = dpi(4)
+local taglist_square_size = dpi(0)
 theme.taglist_squares_sel = theme_assets.taglist_squares_sel(
     taglist_square_size, theme.fg_normal
 )
@@ -132,7 +145,7 @@ theme.icon_theme = nil
 
 --some lain widgets
 
-
+-- Textual layoutbox
 
 return theme
 
