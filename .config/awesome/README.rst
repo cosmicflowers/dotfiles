@@ -27,7 +27,7 @@ Installation
 Notes
 =====
 
-This theme relies on lain for widgets and freedesktop for the menu. A simple clone of this responsitory should install all necessary components. **Be sure** to satisfy their dependencies if not though.
+This theme relies on lain_ for widgets and freedesktop for the menu. A simple clone of this responsitory should install all necessary components. **Be sure** to satisfy their dependencies if not though.
 
 Font used is Roboto Condensed.
 
