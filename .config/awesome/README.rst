@@ -1,157 +1,41 @@
-Awesome WM Copycats
+nightfall theme
 ===================
 
 -------------------------
-Themes for Awesome WM 4.x
+My theme for Awesome WM 4.x
 -------------------------
 
-:Author: Luca CPZ
-:Version: git
+:Author: cosmicflowers
+:Original Authors: Luca CPZ (default config/setup) & ok100 (theme itself)
+:Version: 1.0
 :License: BY-NC-SA_
-:Source: https://github.com/lcpz/awesome-copycats
+:Original Source: https://github.com/lcpz/awesome-copycats
 
 Description
 ===========
 
-A set of themes for the Awesome_ window manager, version 4.x.
-
-See branches_ for previous versions.
-
-Purpose
-=======
-
-The main purpose of this repository is to spread ready to use configurations, which can also serve as a cookbook for customisation.
-
-A secondary aim is to add new themes only when they constitute different UI/UX designs.
-
-Features
-========
-
-- Modularity
-- Autohide widgets
-- Autostart windowless processes
-- Fast MPD and volume shortcuts (first time this trick has been used in Awesome)
-- Shortcuts for copying to the clipboard, toggle wiboxes, widgets popups, screenshots capture, moving and magnifying clients
-- Quake drop-down terminal
-- Calendar with current day highlighted and months switch with a click/scroll
-- Notifications for new mails, current song, volume level, hdd critical state, low battery
-- OpenWeatherMap integration
-- Net carrier status notifier
-- Symbolic tag names
-- DWM-like textual layoutbox
-- Cairo wibar
-- Custom layouts
-- No borders when there's only one visible client
-- Freedesktop.org compliant menu and desktop icons
-- Vi-like client focus
-- Non-empty tag browsing
-- On-the-fly useless gaps resize
-- Dynamic tagging
-
-Gallery
-=======
-
-**Multicolor**, inspired by lucamanni_
-
-.. image:: http://dotshare.it/public/images/uploads/650.png
-
-**Powerarrow**, porting of romockee_'s
-
-.. image:: http://dotshare.it/public/images/uploads/1453.png
-
-**Powerarrow Dark**
-
-.. image:: http://dotshare.it/public/images/uploads/649.jpg
-
-**Steamburn**, porting of ok100_'s dwm
-
-.. image:: http://dotshare.it/public/images/uploads/648.png
-
-**Blackburn**
-
-.. image:: http://dotshare.it/public/images/uploads/553.png
-
-**Dremora**
-
-.. image:: http://dotshare.it/public/images/uploads/652.png
-
-**Rainbow**
-
-.. image:: http://dotshare.it/public/images/uploads/606.png
-
-**Holo**, requested by amouly_
-
-.. image:: http://dotshare.it/public/images/uploads/651.jpg
-
-**Copland**, inspired by foozer_
-
-.. image:: http://dotshare.it/public/images/uploads/655.png
-
-**Vertex**, requested by swordfischer_
-
-.. image:: http://dotshare.it/public/images/uploads/1432.jpg
+My theme for the Awesome_ window manager, version 4.x.
 
 Installation
 ============
 
 .. code-block:: shell
 
-    $ git clone --recursive https://github.com/lcpz/awesome-copycats.git
-    $ mv -bv awesome-copycats/* ~/.config/awesome && rm -rf awesome-copycats
-
-Usage
-=====
-
-The modular structure allows to
-
-* set variables
-* define startup processes
-* change keybindings and layouts
-* set client properties
-
-in ``rc.lua``, and
-
-* configure widgets
-* define wiboxes and screen settings
-
-in ``theme.lua``, so that you just need to change ``chosen_theme`` variable in ``rc.lua`` to preserve your preferences *and* switch the theme, instead of having file redundancy.
-
-Just do the following:
-
-.. code-block:: shell
-
-    $ cd ~/.config/awesome
-    $ cp rc.lua.template rc.lua
-
-Then, set the variable ``chosen_theme`` in ``rc.lua`` to your preferred theme, do your settings, and restart Awesome (``Mod4 + ctrl + r``).
-
-To customize a theme, head over to ``themes/$chosen_theme/theme.lua``.
-
-Otherwise, if you want to be synced with upstream, modify ``theme_path`` variable in ``rc.lua`` like this:
-
-.. code-block:: diff
-
-    -local theme_path = string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), chosen_theme)
-    +local theme_path = string.format("%s/.config/awesome/themes/%s/theme-personal.lua", os.getenv("HOME"), chosen_theme)
-
-then, copy ``theme.lua`` to ``theme-personal.lua`` and do your customizations there.
-
-This way, you can safely ``git pull`` anytime.
+    $ git clone --recursive https://github.com/cosmicflowers/dotfiles.git
+    $ mv -bv .config/awesome/* ~/.config/awesome && rm -rf .config/awesome
 
 Notes
 =====
 
-Complements are provided by lain_ and freedesktop_. **Be sure** to satisfy their dependencies.
+This theme relies on lain for widgets and freedesktop for the menu. A simple clone of this responsitory should install all necessary components. **Be sure** to satisfy their dependencies if not though.
 
-Fonts are Terminus_ (Multicolor, Powerarrow, Powerarrow Dark), Roboto_ (Holo, Vertex) and Tamsyn_ (other ones).
+Font used is Roboto Condensed.
 
-Every theme has a colorscheme_.
-
-Blackburn and Dremora use Icons_, Vertex uses FontAwesome_: be sure to have bitmaps enabled if running under Debian or Ubuntu_.
+This theme currently uses icons for the infobar, so FontAwesome is currently unnecessary. However, I will likely move to this in the future, so it is a good idea to install and configure now if you wish to use this theme.
 
 Additional default software used: ::
 
-    unclutter firefox scrot mpd mpc dmenu xsel slock
+    unclutter firefox scrot mpd mpc dmenu xsel slock urxvt
 
 .. _BY-NC-SA: http://creativecommons.org/licenses/by-nc-sa/4.0
 .. _b0ab0d7: https://github.com/lcpz/awesome-copycats/tree/b0ab0d7837987be81b9195a36631df773113d491
