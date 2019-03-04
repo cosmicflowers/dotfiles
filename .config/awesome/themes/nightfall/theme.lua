@@ -26,7 +26,8 @@ theme.bg_urgent     = "#ff0000"
 theme.bg_minimize   = "#1a1a1a"
 theme.bg_systray    = theme.bg_normal
 theme.fg_normal     = "#ffffff"
-theme.fg_focus      = "#a76cac"
+theme.fg_focus      = "#eca4c4"
+--theme.fg_focus      = "#a76cac"
 theme.fg_urgent     = "#ffffff"
 theme.fg_minimize   = "#ffffff"
 theme.border_normal = "#1a1a1a"
@@ -174,7 +175,7 @@ local bat = lain.widget.bat({
         local perc = bat_now.perc ~= "N/A" and bat_now.perc .. "%" or bat_now.perc
 
         if bat_now.ac_status == 1 then
-            perc = perc .. " plug"
+            perc = perc .. " AC"
         end
 
         widget:set_markup(markup.fontfg(theme.font, theme.fg_normal, perc .. " "))
