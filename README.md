@@ -3,12 +3,12 @@
 A place to store all my various config files, for some reason.
 
 
-How to use this
+How to get this
 ===============
 
 	$ git clone --recursive https://github.com/cosmicflowers/dotfiles.git
 
-Then move which components you wish to use to their respective locations.
+Then move which components you wish to use to their respective locations. Some folders have more detailed instructions.
 
 
 Notes on licenses
