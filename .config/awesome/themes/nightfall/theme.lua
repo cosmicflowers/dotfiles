@@ -238,7 +238,7 @@ function theme.at_screen_connect(s)
     gears.wallpaper.maximized(wallpaper, s, true)
 
     -- Tags
-    awful.tag(awful.util.tagnames, s, awful.layout.layouts)
+    awful.tag(awful.util.tagnames, s, awful.layout.layouts[1])
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
@@ -250,7 +250,7 @@ function theme.at_screen_connect(s)
     s.mytxtlayoutbox:buttons(my_table.join(
                            awful.button({}, 1, function() awful.layout.inc(1) end),
                            -- awful.button({}, 2, function () awful.layout.set( awful.layout.layouts[1] ) end),
-                           awful.button({}, 2, function () awful.layout.set(-1) end),
+                           awful.button({}, 2, function() awful.layout.set(-1) end),
                            awful.button({}, 3, function() awful.layout.inc(1) end),
                            awful.button({}, 4, function() awful.layout.inc(-1) end),
                            awful.button({}, 5, function() awful.layout.inc(1) end)))
