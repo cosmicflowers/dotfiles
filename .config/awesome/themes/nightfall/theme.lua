@@ -1,7 +1,8 @@
 --[[
 
-     Steamburn Awesome WM theme 3.0
-     github.com/lcpz
+     nightfall Awesome WM theme 1.1
+     Original Authors: Luca CPZ (default config/setup) & ok100 (theme itself) & lucamanni (icons)
+     github.com/lcpz/awesome-copycats
 
 --]]
 
