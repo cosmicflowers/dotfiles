@@ -16,6 +16,11 @@ Description
 
 My theme for the Awesome_ window manager, version 4.x.
 
+Sample
+=====
+
+.. image:: https://i.imgur.com/XHdVWld.png
+
 Installation
 ============
 
@@ -27,9 +32,9 @@ Installation
 Notes
 =====
 
-This theme relies on lain_ for widgets and freedesktop for the menu. A simple clone of this responsitory will install all necessary components except the icon font. **Be sure** to satisfy it's dependency if you plan on using v2.x.
+This theme relies on lain_ for widgets and freedesktop for the menu. A simple clone of this responsitory will install all necessary components except the fonts. **Be sure** to satisfy the icon font  dependency if you plan on using v2.x.
 
-Font used is Roboto Condensed.
+Font used is SF Pro Text.
 
 The v1 theme uses icons for the infobar, but it is deprecated. The v2.x theme uses Droid Sans Mono nerd font for the icons.
 
