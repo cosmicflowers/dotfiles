@@ -7,7 +7,7 @@ My theme for Awesome WM 4.x
 
 :Author: cosmicflowers
 :Original Authors: Luca CPZ (default config/setup) & ok100 (theme itself) & lucamanni (icons)
-:Version: 2.0
+:Version: 2.2
 :License: BY-NC-SA_
 :Original Source: https://github.com/lcpz/awesome-copycats
 
@@ -36,7 +36,7 @@ This theme relies on lain_ for widgets and freedesktop for the menu. A simple cl
 
 Font used is SF Pro Text.
 
-The v1 theme uses icons for the infobar, but it is deprecated. The v2.x theme uses Droid Sans Mono nerd font for the icons.
+The v1 theme uses icons for the infobar, and is available to use for those who do not wish to install nerd font but it is deprecated and will not be further updated. The v2.x theme uses Droid Sans Mono nerd font for the icons.
 
 Additional default software used: ::
 
