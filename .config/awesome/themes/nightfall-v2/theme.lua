@@ -1,6 +1,6 @@
 --[[
 
-     nightfall Awesome WM theme v2.0
+     nightfall Awesome WM theme v2.1
      Based on Steamburn theme from lain/awesome-copycats
      
 --]]
@@ -130,12 +130,12 @@ theme.mpd = lain.widget.mpd({
              artist = mpd_now.artist .. " - "
              title  = mpd_now.title  .. " "
              mpdicon:set_image(theme.widget_mpd)
-             widget:set_markup(markup.fontfg(theme.font, "#ce5666" , artist .. title .. " "))
+             widget:set_markup(markup.fontfg(theme.font, "#ce5666" , artist .. title ))
          elseif mpd_now.state == "pause" then
-             widget:set_markup(markup.fontfg(theme.font, "#b4b4b4" , "off   "))
+             widget:set_markup(markup.fontfg(theme.font, "#b4b4b4" , "off"))
              mpdicon:set_image(theme.widget_mpd_off)
          else
-             widget:set_markup(markup.fontfg(theme.font, "#b4b4b4", "off   "))
+             widget:set_markup(markup.fontfg(theme.font, "#b4b4b4", "off"))
              mpdicon:set_image(theme.widget_mpd_off)
          end
      end
@@ -146,7 +146,7 @@ local cpuicon = wibox.widget.textbox()
 cpuicon.markup = '<span font ="DroidSansMono Nerd Font 11" fgcolor="#ce5666"></span>'  
 local cpu = lain.widget.cpu({
     settings = function()
-	widget:set_markup(markup.fontfg(theme.font, "#ce5666", " " .. cpu_now.usage .. "%   "))
+	widget:set_markup(markup.fontfg(theme.font, "#ce5666", " " .. cpu_now.usage .. "%"))
     end
 })
 
@@ -155,7 +155,7 @@ local tempicon = wibox.widget.textbox()
 tempicon.markup = '<span font ="DroidSansMono Nerd Font 8" fgcolor="#969176"></span>'  
 local temp = lain.widget.temp({
     settings = function()
-        widget:set_markup(markup.fontfg(theme.font, "#969176", " " .. coretemp_now .. "°C  "))
+        widget:set_markup(markup.fontfg(theme.font, "#969176", " " .. coretemp_now .. "°C"))
     end
 })
 
@@ -164,7 +164,7 @@ local memicon = wibox.widget.textbox()
 memicon.markup = '<span font ="DroidSansMono Nerd Font 10" fgcolor="#f1af5f"></span>'  
 local memory = lain.widget.mem({
     settings = function()
-        widget:set_markup(markup.fontfg(theme.font, "#f1af5f", " " .. mem_now.used .. "M  "))
+        widget:set_markup(markup.fontfg(theme.font, "#f1af5f", " " .. mem_now.used .. "M"))
     end
 })
 
@@ -176,10 +176,10 @@ local bat = lain.widget.bat({
         local perc = bat_now.perc ~= "N/A" and bat_now.perc .. "%" or bat_now.perc
 
         if bat_now.ac_status == 1 then
-            perc = " " .. perc .. " AC"
+            perc = " " .. perc .. "AC"
         end
 
-        widget:set_markup(markup.fontfg(theme.font, "#eca4c4", " " .. perc .. " "))
+        widget:set_markup(markup.fontfg(theme.font, "#eca4c4", " " .. perc .. "  "))
     end
 })
 
@@ -194,15 +194,15 @@ local net = lain.widget.net({
 
 -- ALSA volume
 local volicon = wibox.widget.textbox()
-volicon.markup = '<span font ="DroidSansMono Nerd Font 9" fgcolor="#4d6585"></span>'  
+volicon.markup = '<span font ="DroidSansMono Nerd Font 9" fgcolor="#83a3be"></span>'  
 theme.volume = lain.widget.alsa({
     settings = function()
         if volume_now.status == "off" then
 --            volume_now.level = "M"
-            widget:set_markup(markup.fontfg(theme.font, "#4d6585", " " .. "M  "))
+            widget:set_markup(markup.fontfg(theme.font, "#83a3be", " " .. "M"))
 --        end
 		  else
-            widget:set_markup(markup.fontfg(theme.font, "#4d6585", " " .. volume_now.level .. "%  "))
+            widget:set_markup(markup.fontfg(theme.font, "#83a3be", " " .. volume_now.level .. "%"))
         end
     end
 })
@@ -213,18 +213,19 @@ weathericon.markup = '<span font ="DroidSansMono Nerd Font 9" fgcolor="#bba9cf">
 theme.weather = lain.widget.weather({
     city_id = 4235193, -- replace with your own
     notification_preset = { font = theme.font, fg = theme.fg_normal },
-    weather_na_markup = markup.fontfg(theme.font, "#bba9cf", " " .. "N/A   "),
+    weather_na_markup = markup.fontfg(theme.font, "#bba9cf", " " .. "N/A"),
     settings = function()
         descr = weather_now["weather"][1]["description"]:lower()
         units = math.floor(weather_now["main"]["temp"])
 --        widget:set_markup(markup.fontfg(theme.font, "#eca4c4", descr .. " @ " .. units .. "°C "))
-        widget:set_markup(markup.fontfg(theme.font, "#bba9cf", " " ..  units .. "°C   "))
+        widget:set_markup(markup.fontfg(theme.font, "#bba9cf", " " ..  units .. "°C"))
     end
 })
 
 -- Separators
 local first = wibox.widget.textbox(markup.font("Misc Tamsyn 4", " "))
 local spr   = wibox.widget.textbox(' ')
+local doublespr = wibox.widget.textbox("   ")
 
 local function update_txt_layoutbox(s)
     -- Writes a string representation of the current layout in a textbox widget
@@ -287,24 +288,31 @@ function theme.at_screen_connect(s)
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             wibox.widget.systray(),
-            spr,
+            -- spr,
             -- theme.mail.widget,
 	         mpdicon,
 	    	   theme.mpd.widget,
+				doublespr,
             weathericon,
             theme.weather.widget,
+				doublespr,
             cpuicon,
             cpu.widget,
+				doublespr,
 	    	   memicon,
 	    	   memory.widget,
+				doublespr,
 	    	   tempicon,
 	    	   temp.widget,
+				doublespr,
             volicon,
             theme.volume.widget,
+				doublespr,
             baticon,
             bat.widget,
             -- net.widget,
-            mytextclock
+				-- doublespr,
+            mytextclock,
         },
     }
 end
