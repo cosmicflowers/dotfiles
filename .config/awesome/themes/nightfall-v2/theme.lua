@@ -1,7 +1,10 @@
 --[[
 
-     nightfall Awesome WM theme v2.1
+     nightfall Awesome WM theme v2.2
      Based on Steamburn theme from lain/awesome-copycats
+     
+     required dependencies of this theme file: SF Pro Text (font), Droid Sans Mono Nerd Font (font), lain, awesome-copycats
+     optional dependencies: Roboto Condensed (font)
      
 --]]
 
@@ -146,7 +149,7 @@ local cpuicon = wibox.widget.textbox()
 cpuicon.markup = '<span font ="DroidSansMono Nerd Font 11" fgcolor="#ce5666"></span>'  
 local cpu = lain.widget.cpu({
     settings = function()
-	widget:set_markup(markup.fontfg(theme.font, "#ce5666", " " .. cpu_now.usage .. "%"))
+	     widget:set_markup(markup.fontfg(theme.font, "#ce5666", " " .. cpu_now.usage .. "%"))
     end
 })
 
@@ -154,6 +157,7 @@ local cpu = lain.widget.cpu({
 local tempicon = wibox.widget.textbox()
 tempicon.markup = '<span font ="DroidSansMono Nerd Font 8" fgcolor="#969176"></span>'  
 local temp = lain.widget.temp({
+	 tempfile = "/sys/class/hwmon/hwmon1/temp1_input", -- default is /sys/class/thermal/thermal_zone0/temp, your location may vary
     settings = function()
         widget:set_markup(markup.fontfg(theme.font, "#969176", " " .. coretemp_now .. "°C"))
     end

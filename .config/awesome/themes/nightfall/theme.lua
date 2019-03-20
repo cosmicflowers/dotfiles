@@ -1,8 +1,7 @@
 --[[
 
-     nightfall Awesome WM theme 1.1
-     Original Authors: Luca CPZ (default config/setup) & ok100 (theme itself) & lucamanni (icons)
-     github.com/lcpz/awesome-copycats
+     nightfall Awesome WM theme v1.2-final
+     Based on Steamburn theme from lain/awesome-copycats
 
 --]]
 
@@ -18,9 +17,10 @@ local theme                                     = {}
 theme.zenburn_dir                               = require("awful.util").get_themes_dir() .. "zenburn"
 theme.dir                                       = os.getenv("HOME") .. "/.config/awesome/themes/nightfall"
 theme.wallpaper                                 = theme.dir .. "/wall.jpg"
-theme.font                                      = "roboto condensed 10"
+theme.font                                      = "SF Pro Text 9"
+-- theme.font                                      = "roboto condensed 10"
 
--- colors from other theme
+-- colors
 theme.bg_normal     = "#1a1a1a"
 theme.bg_focus      = "#1a1a1a"
 theme.bg_urgent     = "#ff0000"
@@ -57,6 +57,8 @@ theme.layout_txt_floating                       = "[ f ]"
 theme.tasklist_plain_task_name                  = true
 theme.tasklist_disable_icon                     = true
 theme.useless_gap                               = 4
+theme.widget_mpd                                = theme.dir .. "/icons/note_on.png"  
+theme.widget_mpd_off                            = theme.dir .. "/icons/note.png"  
 theme.widget_cpu                                = theme.dir .. "/icons/cpu.png"
 theme.widget_temp                               = theme.dir .. "/icons/temp.png"
 theme.widget_weather                            = theme.dir .. "/icons/dish.png"
@@ -99,8 +101,7 @@ mytextclock.font = theme.font
 theme.cal = lain.widget.cal({
     attach_to = { mytextclock },
     notification_preset = {
-	font = "roboto condensed 10",
---        font = "Misc Tamsyn 11",
+	 font = theme.font,
         fg   = theme.fg_normal,
         bg   = theme.bg_normal
     }
@@ -127,35 +128,37 @@ theme.mail = lain.widget.imap({
 })
 --]]
 
--- MPD
--- theme.mpd = lain.widget.mpd({
---    settings = function()
---        artist = mpd_now.artist .. " "
---        title  = mpd_now.title  .. " "
---
---        if mpd_now.state == "pause" then
---            artist = "mpd "
---            title  = "paused "
---        elseif mpd_now.state == "stop" then
---            artist = ""
---            title  = ""
---        end
---
---        widget:set_markup(markup.font(theme.font, markup(gray, artist) .. title))
---    end
--- })
+--  MPD
+local mpdicon = wibox.widget.imagebox(theme.widget_mpd)
+theme.mpd = lain.widget.mpd({
+     settings = function()
+         if mpd_now.state == "play" then
+             artist = mpd_now.artist .. " - "
+             title  = mpd_now.title  .. " "
+             mpdicon:set_image(theme.widget_mpd)
+             widget:set_markup(markup.fontfg(theme.font, "#ce5666" , artist .. title))
+         elseif mpd_now.state == "pause" then
+             widget:set_markup(markup.fontfg(theme.font, "#b4b4b4" , "off"))
+             mpdicon:set_image(theme.widget_mpd_off)
+         else
+             widget:set_markup(markup.fontfg(theme.font, "#b4b4b4", "off"))
+             mpdicon:set_image(theme.widget_mpd_off)
+         end
+     end
+})
 
 -- CPU
 local cpuicon = wibox.widget.imagebox(theme.widget_cpu)
 local cpu = lain.widget.cpu({
     settings = function()
-        widget:set_markup(markup.fontfg(theme.font, "#e33a6e", cpu_now.usage .. "% "))
+		  widget:set_markup(markup.fontfg(theme.font, "#e33a6e", cpu_now.usage .. "% "))
     end
 })
 
 -- Coretemp
 local tempicon = wibox.widget.imagebox(theme.widget_temp)
 local temp = lain.widget.temp({
+	 tempfile = "/sys/class/hwmon/hwmon1/temp1_input", -- default is /sys/class/thermal/thermal_zone0/temp, your location may vary 
     settings = function()
         widget:set_markup(markup.fontfg(theme.font, "#f1af5f", coretemp_now .. "°C "))
     end
@@ -197,10 +200,12 @@ local volicon = wibox.widget.imagebox(theme.widget_vol)
 theme.volume = lain.widget.alsa({
     settings = function()
         if volume_now.status == "off" then
-            volume_now.level = volume_now.level .. "M"
+--            volume_now.level = "M"
+            widget:set_markup(markup.fontfg(theme.font, "#7493d2", "M"))
+--        end
+		  else
+            widget:set_markup(markup.fontfg(theme.font, "#7493d2", volume_now.level .. "% "))
         end
-
-        widget:set_markup(markup.fontfg(theme.font, "#7493d2", volume_now.level .. "% "))
     end
 })
 
@@ -208,12 +213,13 @@ theme.volume = lain.widget.alsa({
 local weathericon = wibox.widget.imagebox(theme.widget_weather)
 theme.weather = lain.widget.weather({
     city_id = 4235193, -- replace with your own
-    notification_preset = { font = "roboto condensed 10", fg = theme.fg_normal },
+    notification_preset = { font = theme.font, fg = theme.fg_normal },
     weather_na_markup = markup.fontfg(theme.font, "#eca4c4", "N/A "),
     settings = function()
         descr = weather_now["weather"][1]["description"]:lower()
         units = math.floor(weather_now["main"]["temp"])
-        widget:set_markup(markup.fontfg(theme.font, "#eca4c4", descr .. " @ " .. units .. "°C "))
+--        widget:set_markup(markup.fontfg(theme.font, "#eca4c4", descr .. " @ " .. units .. "°C "))
+        widget:set_markup(markup.fontfg(theme.font, "#eca4c4", units .. "°C "))
     end
 })
 
@@ -283,16 +289,17 @@ function theme.at_screen_connect(s)
             layout = wibox.layout.fixed.horizontal,
             wibox.widget.systray(),
             spr,
-            -- theme.mpd.widget,
             -- theme.mail.widget,
+	         mpdicon,
+	    	   theme.mpd.widget,
             weathericon,
             theme.weather.widget,
-	    cpuicon,
+            cpuicon,
             cpu.widget,
-	    memicon,
-	    memory.widget,
-	    tempicon,
-	    temp.widget,
+	    	   memicon,
+	    	   memory.widget,
+	    	   tempicon,
+	    	   temp.widget,
             volicon,
             theme.volume.widget,
             baticon,
