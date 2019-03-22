@@ -1,6 +1,6 @@
 --[[
 
-     nightfall Awesome WM theme v1.2-final
+     nightfall Awesome WM theme v1.2.1-final
      Based on Steamburn theme from lain/awesome-copycats
 
 --]]
@@ -101,9 +101,9 @@ mytextclock.font = theme.font
 theme.cal = lain.widget.cal({
     attach_to = { mytextclock },
     notification_preset = {
-	 font = theme.font,
-        fg   = theme.fg_normal,
-        bg   = theme.bg_normal
+	 	font = "Monospace 9",
+    	fg   = theme.fg_normal,
+    	bg   = theme.bg_normal
     }
 })
 

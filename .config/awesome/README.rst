@@ -36,7 +36,7 @@ This theme relies on lain_ for widgets and freedesktop for the menu. A clone of 
 
 Fonts used are SF Pro Text + DroidSansMono Nerd Font (icons) + SF Mono (calendar only).
 
-The v1 theme uses icons for the infobar, and is available to use for those who do not wish to install nerd font but it is deprecated and will not be further updated.
+The v1 theme uses icons for the infobar, and is available to use for those who do not wish to install the nerd font. However, it is deprecated and will not be further updated.
 
 Additional default software used: ::
 
