@@ -1,9 +1,9 @@
 --[[
 
-     nightfall Awesome WM theme v2.2
+     nightfall Awesome WM theme v2.3
      Based on Steamburn theme from lain/awesome-copycats
      
-     required dependencies of this theme file: SF Pro Text (font), Droid Sans Mono Nerd Font (font), lain, awesome-copycats
+     required dependencies of this theme file: SF Pro Text & SF Mono (fonts), Droid Sans Mono Nerd Font (font), lain, awesome-copycats
      optional dependencies: Roboto Condensed (font)
      
 --]]
@@ -60,8 +60,6 @@ theme.layout_txt_floating                       = "[ f ]"
 theme.tasklist_plain_task_name                  = true
 theme.tasklist_disable_icon                     = true
 theme.useless_gap                               = 4
-theme.widget_mpd                                = theme.dir .. "/icons/note_on.png"  
-theme.widget_mpd_off                            = theme.dir .. "/icons/note.png"  
 theme.titlebar_close_button_normal              = theme.zenburn_dir.."/titlebar/close_normal.png"
 theme.titlebar_close_button_focus               = theme.zenburn_dir.."/titlebar/close_focus.png"
 theme.titlebar_minimize_button_normal           = theme.zenburn_dir.."/titlebar/minimize_normal.png"
@@ -98,9 +96,9 @@ mytextclock.font = theme.font
 theme.cal = lain.widget.cal({
     attach_to = { mytextclock },
     notification_preset = {
-	 font = theme.font,
-        fg   = theme.fg_normal,
-        bg   = theme.bg_normal
+	 	font = "SF Mono  9", -- use generic "Monospace" if you don't have SF Mono installed
+    	fg   = theme.fg_normal,
+    	bg   = theme.bg_normal
     }
 })
 
@@ -126,20 +124,20 @@ theme.mail = lain.widget.imap({
 --]]
 
 --  MPD
-local mpdicon = wibox.widget.imagebox(theme.widget_mpd)
+local mpdicon = wibox.widget.textbox()
 theme.mpd = lain.widget.mpd({
      settings = function()
          if mpd_now.state == "play" then
-             artist = mpd_now.artist .. " - "
-             title  = mpd_now.title  .. " "
-             mpdicon:set_image(theme.widget_mpd)
+             artist = " " .. mpd_now.artist .. " - "
+             title  = mpd_now.title
              widget:set_markup(markup.fontfg(theme.font, "#ce5666" , artist .. title ))
+				 mpdicon.markup = '<span font ="DroidSansMono Nerd Font 11" fgcolor="#ce5666"></span>'  
          elseif mpd_now.state == "pause" then
-             widget:set_markup(markup.fontfg(theme.font, "#b4b4b4" , "off"))
-             mpdicon:set_image(theme.widget_mpd_off)
+         	 widget:set_markup(markup.fontfg(theme.font, "#b4b4b4", ""))
+				 mpdicon.markup = '<span font ="DroidSansMono Nerd Font 11" fgcolor="#ce5666"></span>'  
          else
-             widget:set_markup(markup.fontfg(theme.font, "#b4b4b4", "off"))
-             mpdicon:set_image(theme.widget_mpd_off)
+         	 widget:set_markup(markup.fontfg(theme.font, "#b4b4b4", ""))
+				 mpdicon.markup = '<span font ="DroidSansMono Nerd Font 11" fgcolor="#ce5666"></span>'  
          end
      end
 })
@@ -155,35 +153,33 @@ local cpu = lain.widget.cpu({
 
 -- Coretemp
 local tempicon = wibox.widget.textbox()
-tempicon.markup = '<span font ="DroidSansMono Nerd Font 8" fgcolor="#969176"></span>'  
+tempicon.markup = '<span font ="DroidSansMono Nerd Font 8" fgcolor="#f1af5f"></span>'  
 local temp = lain.widget.temp({
 	 tempfile = "/sys/class/hwmon/hwmon1/temp1_input", -- default is /sys/class/thermal/thermal_zone0/temp, your location may vary
     settings = function()
-        widget:set_markup(markup.fontfg(theme.font, "#969176", " " .. coretemp_now .. "°C"))
+        widget:set_markup(markup.fontfg(theme.font, "#f1af5f", " " .. coretemp_now .. "°C"))
     end
 })
 
 -- MEM
 local memicon = wibox.widget.textbox()
-memicon.markup = '<span font ="DroidSansMono Nerd Font 10" fgcolor="#f1af5f"></span>'  
+memicon.markup = '<span font ="DroidSansMono Nerd Font 10" fgcolor="#eca4c4"></span>'  
 local memory = lain.widget.mem({
     settings = function()
-        widget:set_markup(markup.fontfg(theme.font, "#f1af5f", " " .. mem_now.used .. "M"))
+        widget:set_markup(markup.fontfg(theme.font, "#eca4c4", " " .. mem_now.used .. "M"))
     end
 })
 
 -- Battery
 local baticon = wibox.widget.textbox()
-baticon.markup = '<span font ="DroidSansMono Nerd Font 8" fgcolor="#eca4c4"></span>'  
+baticon.markup = '<span font ="DroidSansMono Nerd Font 8" fgcolor="#969176"></span>'  
 local bat = lain.widget.bat({
     settings = function()
         local perc = bat_now.perc ~= "N/A" and bat_now.perc .. "%" or bat_now.perc
-
         if bat_now.ac_status == 1 then
             perc = " " .. perc .. "AC"
         end
-
-        widget:set_markup(markup.fontfg(theme.font, "#eca4c4", " " .. perc .. "  "))
+        widget:set_markup(markup.fontfg(theme.font, "#969176", " " .. perc .. "  "))
     end
 })
 
