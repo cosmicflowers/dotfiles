@@ -8,7 +8,7 @@ How to get this
 
 	$ git clone --recursive https://github.com/cosmicflowers/dotfiles.git
 
-Then move which components you wish to use to their respective locations. Some folders have more detailed instructions.
+Then move which components you wish to use to their respective locations. See the .config/awesome/ folder for more detailed instructions.
 
 
 Notes on licenses

@@ -6,8 +6,8 @@ My theme for Awesome WM 4.x
 -------------------------
 
 :Author: cosmicflowers
-:Original Authors: Luca CPZ (default config/setup) & ok100 (theme itself) & lucamanni (v1 icons only)
-:Version: 2.3
+:Original Authors: Luca CPZ (base config/setup) & ok100 (base theme) & lucamanni (v1 icons only)
+:Version: 2.4
 :License: BY-NC-SA_
 :Original Source: https://github.com/lcpz/awesome-copycats
 
@@ -32,15 +32,15 @@ Installation
 Notes
 =====
 
-This theme relies on lain_ for widgets and freedesktop for the menu. A clone of this responsitory will install all the necessary components except the fonts. **Be sure** to satisfy the icon font dependency if you plan on using v2.x.
+This theme relies on lain_ for widgets and freedesktop for the menu. As of version 2.4, it now also uses feh for background display - this is an optional dependency though because awesome has it's own method of displaying backgrounds that you can revert to.  A clone of this responsitory will install all the necessary components except the fonts. **Be sure** to satisfy the icon font dependency if you plan on using v2.x.
 
-Fonts used are SF Pro Text + DroidSansMono Nerd Font (icons) + SF Mono (calendar only).
+Fonts used are SF Pro Text (main) + DroidSansMono Nerd Font (icons) + SF Mono (calendar only).
 
 The v1 theme uses icons for the infobar, and is available to use for those who do not wish to install the nerd font. However, it is deprecated and will not be further updated.
 
 Additional default software used: ::
 
-    unclutter firefox scrot mpd mpc dmenu xsel slock urxvt 
+    feh unclutter firefox scrot mpd mpc dmenu xsel slock urxvt 
 
 .. _BY-NC-SA: http://creativecommons.org/licenses/by-nc-sa/4.0
 .. _b0ab0d7: https://github.com/lcpz/awesome-copycats/tree/b0ab0d7837987be81b9195a36631df773113d491
@@ -53,7 +53,8 @@ Additional default software used: ::
 .. _foozer: http://dotshare.it/dots/499
 .. _lain: https://github.com/lcpz/lain
 .. _freedesktop: https://github.com/lcpz/awesome-freedesktop
-.. _Tamzen: https://github.com/sunaku/tamzen-font
+.. _feh: https://feh.finalrewind.org/
+.. _San Francisco fonts: https://developer.apple.com/fonts/
 .. _Roboto: https://fonts.google.com/specimen/Roboto
 .. _Nerd Font: https://nerdfonts.com/
 .. _branches: https://github.com/lcpz/awesome-copycats/branches
