@@ -1,6 +1,6 @@
 --[[
 
-     nightfall Awesome WM theme v2.3
+     nightfall Awesome WM theme v2.4
      Based on Steamburn theme from lain/awesome-copycats
      
      required dependencies of this theme file: SF Pro Text & SF Mono (fonts), Droid Sans Mono Nerd Font (font), lain, awesome-copycats
@@ -21,7 +21,7 @@ theme.zenburn_dir                               = require("awful.util").get_them
 theme.dir                                       = os.getenv("HOME") .. "/.config/awesome/themes/nightfall-v2"
 theme.wallpaper                                 = theme.dir .. "/wall.jpg"
 theme.font                                      = "SF Pro Text 9"
--- theme.font                                      = "roboto condensed 10"
+--theme.font                                      = "Roboto Condensed 10"
 
 -- colors
 theme.bg_normal     = "#1a1a1a"
@@ -131,7 +131,7 @@ theme.mpd = lain.widget.mpd({
              artist = " " .. mpd_now.artist .. " - "
              title  = mpd_now.title
              widget:set_markup(markup.fontfg(theme.font, "#ce5666" , artist .. title ))
-				 mpdicon.markup = '<span font ="DroidSansMono Nerd Font 11" fgcolor="#ce5666"></span>'  
+				 mpdicon.markup = '<span font ="DroidSansMono Nerd Font 11" fgcolor="#ce5666"> </span>'  
          elseif mpd_now.state == "pause" then
          	 widget:set_markup(markup.fontfg(theme.font, "#b4b4b4", ""))
 				 mpdicon.markup = '<span font ="DroidSansMono Nerd Font 11" fgcolor="#ce5666"></span>'  
@@ -176,9 +176,11 @@ baticon.markup = '<span font ="DroidSansMono Nerd Font 8" fgcolor="#969176"><
 local bat = lain.widget.bat({
     settings = function()
         local perc = bat_now.perc ~= "N/A" and bat_now.perc .. "%" or bat_now.perc
+
         if bat_now.ac_status == 1 then
             perc = " " .. perc .. "AC"
         end
+        
         widget:set_markup(markup.fontfg(theme.font, "#969176", " " .. perc .. "  "))
     end
 })

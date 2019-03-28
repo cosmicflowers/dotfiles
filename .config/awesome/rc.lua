@@ -3,6 +3,7 @@
      Awesome WM configuration template
      github.com/lcpz
 
+     rc.lua - v2.4
 --]]
 
 -- {{{ Required libraries
@@ -56,7 +57,7 @@ local function run_once(cmd_arr)
     end
 end
 
-run_once({ "urxvt", "unclutter -root" }) -- entries must be separated by commas
+run_once({ "unclutter -root" }) -- entries must be separated by commas
 
 -- This function implements the XDG autostart specification
 --[[
@@ -73,24 +74,16 @@ awful.spawn.with_shell(
 -- {{{ Variable definitions
 
 local themes = {
-    "blackburn",       -- 1
-    "copland",         -- 2
-    "dremora",         -- 3
-    "holo",            -- 4
-    "multicolor",      -- 5
-    "powerarrow",      -- 6
-    "powerarrow-dark", -- 7
-    "rainbow",         -- 8
-    "steamburn",       -- 9
-    "vertex",          -- 10
-    "nightfall",       -- 11
+    "nightfall",     -- 1
+	 "nightfall-v2",  -- 2
 }
 
-local chosen_theme = themes[11]
+-- theme number from above goes into themes[ ]
+local chosen_theme = themes[2]
 local modkey       = "Mod4"
 local altkey       = "Mod1"
 local terminal     = "urxvt"
-local editor       = os.getenv("EDITOR") or "vim"
+local editor       = os.getenv("EDITOR") or "nano"
 local gui_editor   = "gvim"
 local browser      = "firefox"
 local guieditor    = "atom"
@@ -211,25 +204,35 @@ awful.util.mymainmenu = freedesktop.menu.build({
 -- hide menu when mouse leaves it
 --awful.util.mymainmenu.wibox:connect_signal("mouse::leave", function() awful.util.mymainmenu:hide() end)
 
---menubar.utils.terminal = terminal -- Set the Menubar terminal for applications that require it
+menubar.utils.terminal = terminal -- Set the Menubar terminal for applications that require it
 -- }}}
 
 -- {{{ Screen
--- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
-screen.connect_signal("property::geometry", function(s)
     -- Wallpaper
+local function set_wallpaper(s)
     if beautiful.wallpaper then
         local wallpaper = beautiful.wallpaper
         -- If wallpaper is a function, call it with the screen
         if type(wallpaper) == "function" then
             wallpaper = wallpaper(s)
         end
-        gears.wallpaper.maximized(wallpaper, s, true)
+
+        -- Built in support
+        --gears.wallpaper.maximized(wallpaper, s, true)
+
+        -- Feh 
+        awful.spawn.with_shell(os.getenv("HOME") .. "/.fehbg")
     end
-end)
+end
+
+-- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
+screen.connect_signal("property::geometry", set_wallpaper)
+
 -- Create a wibox for each screen and add it
-awful.screen.connect_for_each_screen(function(s) beautiful.at_screen_connect(s) end)
+awful.screen.connect_for_each_screen(function(s) set_wallpaper(s) beautiful.at_screen_connect(s) end)
 -- }}}
+
+
 
 -- {{{ Mouse bindings
 root.buttons(my_table.join(
